@@ -1,0 +1,305 @@
+/* REMASTERED */
+/* RTX-ON */
+/* completely redone toggle and droid */
+
+.bb8-toggle {
+    --toggle-size: 16px;
+    --toggle-width: 10.625em;
+    --toggle-height: 5.625em;
+    --toggle-offset: calc((var(--toggle-height) - var(--bb8-diameter)) / 2);
+    --toggle-bg: linear-gradient(#2c4770, #070e2b 35%, #628cac 50% 70%, #a6c5d4)
+      no-repeat;
+    --bb8-diameter: 4.375em;
+    --radius: 99em;
+    --transition: 0.4s;
+    --accent: #de7d2f;
+    --bb8-bg: #fff;
+    --bg-color: #ffffff; /* Default light mode background color */
+    --text-color: #000000; /* Default light mode text color */
+  }
+  
+  .bb8-toggle.dark-mode {
+    --toggle-bg: linear-gradient(#1d1d1d, #000000 35%, #3a3a3a 50% 70%, #1a1a1a)
+      no-repeat;
+    --bb8-bg: #333;
+    --accent: #f39c12;
+    --bg-color: #000000; /* Dark mode background color */
+    --text-color: #ffffff; /* Dark mode text color */
+  }
+  
+  .bb8-toggle,
+  .bb8-toggle *,
+  .bb8-toggle *::before,
+  .bb8-toggle *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  .bb8-toggle {
+    cursor: pointer;
+    margin-top: var(--margin-top-for-head);
+    font-size: var(--toggle-size);
+  }
+  
+  .bb8-toggle__checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: none;
+  }
+  
+  .bb8-toggle__container {
+    width: var(--toggle-width);
+    height: var(--toggle-height);
+    background: var(--toggle-bg);
+    background-size: 100% 11.25em;
+    background-position-y: -5.625em;
+    border-radius: var(--radius);
+    position: relative;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
+    transition: var(--transition);
+  }
+  
+  .bb8 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    top: calc(var(--toggle-offset) - 1.688em + 0.188em);
+    left: var(--toggle-offset);
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
+    transition: var(--transition);
+    z-index: 2;
+  }
+  
+  .bb8__head-container {
+    position: relative;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
+    transition: var(--transition);
+    z-index: 2;
+    -webkit-transform-origin: 1.25em 3.75em;
+    -ms-transform-origin: 1.25em 3.75em;
+    transform-origin: 1.25em 3.75em;
+  }
+  
+  .bb8__head {
+    overflow: hidden;
+    margin-bottom: -0.188em;
+    width: 2.5em;
+    height: 1.688em;
+    background: linear-gradient(
+        transparent 0.063em,
+        dimgray 0.063em 0.313em,
+        transparent 0.313em 0.375em,
+        var(--accent) 0.375em 0.5em,
+        transparent 0.5em 1.313em,
+        silver 1.313em 1.438em,
+        transparent 1.438em
+      ),
+      linear-gradient(45deg, transparent 0.188em, var(--bb8-bg) 0.188em 1.25em, transparent
+            1.25em),
+      linear-gradient(135deg, transparent 0.188em, var(--bb8-bg) 0.188em 1.25em, transparent
+            1.25em),
+      linear-gradient(var(--bb8-bg) 1.25em, transparent 1.25em);
+    border-radius: var(--radius) var(--radius) 0 0;
+    position: relative;
+    z-index: 1;
+    -webkit-filter: drop-shadow(0 0.063em 0.125em gray);
+    filter: drop-shadow(0 0.063em 0.125em gray);
+  }
+  
+  .bb8__head::before {
+    content: "";
+    position: absolute;
+    width: 0.563em;
+    height: 0.563em;
+    background: radial-gradient(
+        0.125em circle at 0.25em 0.375em,
+        red,
+        transparent
+      ),
+      radial-gradient(
+        0.063em circle at 0.375em 0.188em,
+        var(--bb8-bg) 50%,
+        transparent 100%
+      ),
+      linear-gradient(45deg, #000 0.188em, dimgray 0.313em 0.375em, #000 0.5em);
+    border-radius: var(--radius);
+    top: 0.413em;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+    -webkit-box-shadow: 0 0 0 0.089em lightgray, 0.563em 0.281em 0 -0.148em,
+      0.563em 0.281em 0 -0.1em var(--bb8-bg), 0.563em 0.281em 0 -0.063em;
+    box-shadow: 0 0 0 0.089em lightgray, 0.563em 0.281em 0 -0.148em,
+      0.563em 0.281em 0 -0.1em var(--bb8-bg), 0.563em 0.281em 0 -0.063em;
+    z-index: 1;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
+    transition: var(--transition);
+  }
+  
+  .bb8__head::after {
+    content: "";
+    position: absolute;
+    bottom: 0.375em;
+    left: 0;
+    width: 100%;
+    height: 0.188em;
+    background: linear-gradient(
+      to right,
+      var(--accent) 0.125em,
+      transparent 0.125em 0.188em,
+      var(--accent) 0.188em 0.313em,
+      transparent 0.313em 0.375em,
+      var(--accent) 0.375em 0.938em,
+      transparent 0.938em 1em,
+      var(--accent) 1em 1.125em,
+      transparent 1.125em 1.875em,
+      var(--accent) 1.875em 2em,
+      transparent 2em 2.063em,
+      var(--accent) 2.063em 2.25em,
+      transparent 2.25em 2.313em,
+      var(--accent) 2.313em 2.375em,
+      transparent 2.375em 2.438em,
+      var(--accent) 2.438em
+    );
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
+    transition: var(--transition);
+  }
+  
+  .bb8__antenna {
+    position: absolute;
+    -webkit-transform: translateY(-90%);
+    -ms-transform: translateY(-90%);
+    transform: translateY(-90%);
+    width: 0.059em;
+    border-radius: var(--radius) var(--radius) 0 0;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
+    transition: var(--transition);
+  }
+  
+  .bb8__antenna:nth-child(1) {
+    height: 0.938em;
+    right: 0.938em;
+    background: linear-gradient(#000 0.188em, silver 0.188em);
+  }
+  
+  .bb8__antenna:nth-child(2) {
+    height: 0.375em;
+    left: 50%;
+    -webkit-transform: translate(-50%, -90%);
+    -ms-transform: translate(-50%, -90%);
+    transform: translate(-50%, -90%);
+    background: silver;
+  }
+  
+  .bb8__body {
+    width: 4.375em;
+    height: 4.375em;
+    background: var(--bb8-bg);
+    border-radius: var(--radius);
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
+    transition: var(--transition);
+    z-index: 1;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-box-shadow: 0 0 0 0.1em var(--bb8-bg);
+    box-shadow: 0 0 0 0.1em var(--bb8-bg);
+  }
+  
+  .bb8__eye {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    height: 1.063em;
+    width: 1.063em;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  .bb8__eye::before {
+    content: "";
+    position: absolute;
+    height: 0.563em;
+    width: 0.563em;
+    border-radius: 50%;
+    background: black;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  .bb8__eye:nth-child(1) {
+    top: 0.75em;
+    left: 1.313em;
+  }
+  
+  .bb8__eye:nth-child(2) {
+    top: 0.75em;
+    left: 2.438em;
+  }
+  
+  .bb8__eye:nth-child(3) {
+    top: 2.438em;
+    left: 1.313em;
+  }
+  
+  .bb8__eye:nth-child(4) {
+    top: 2.438em;
+    left: 2.438em;
+  }
+  
+  .bb8__shadow {
+    content: "";
+    width: var(--bb8-diameter);
+    height: 20%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.313em 3.125em rgba(0, 0, 0, 0.25);
+    position: absolute;
+    bottom: 0;
+    left: calc(var(--toggle-offset) - 0.938em);
+    -webkit-transform: skew(-70deg);
+    -ms-transform: skew(-70deg);
+    transform: skew(-70deg);
+    z-index: 1;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
+    transition: var(--transition);
+  }
+  
+  .bb8__shadow:nth-child(1) {
+    background: var(--bb8-shadow);
+  }
+  
+  .bb8__shadow:nth-child(2) {
+    background: var(--bb8-shadow-dark);
+  }
+  
+  .bb8__shadow:nth-child(3) {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  

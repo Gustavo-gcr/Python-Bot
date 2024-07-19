@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            margin: 0;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #6e45e2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #5a2a91;
+        }
+        .results {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+            width: 100%;
+        }
+        .results h2 {
+            color: #333;
+            font-size: 1.5em;
+        }
+        .results h3 {
+            color: #444;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        .results p {
+            font-size: 1em;
+            color: #555;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Bot</h1>
+        <input type="text" id="query" placeholder="Digite sua pergunta">
+        <button id="searchButton">Pesquisar</button>
+        <div class="results" id="results"></div>
+    </div>
+    <script>
+        document.getElementById('searchButton').addEventListener('click', async () => {
+            const query = document.getElementById('query').value;
+            if (!query) {
+                alert('Por favor, insira uma pergunta.');
+                return;
+            }
+            try {
+              const response = await fetch('/search', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ query }),
+});
+                if (!response.ok) {
+                    throw new Error('Erro ao fazer a solicitação');
+                }
+                const data = await response.json();
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = `
+                    <h2>Resultados:</h2>
+                    <h3>ChatGPT:</h3>
+                    <p>${data.chatgpt}</p>
+                    <h3>Gemini:</h3>
+                    <p>${data.gemini}</p>
+                    <h3>Copilot:</h3>
+                    <p>${data.copilot}</p>
+                `;
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                document.getElementById('results').innerHTML = '<p>Ocorreu um erro ao buscar os resultados.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
